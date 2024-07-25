@@ -3,22 +3,22 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import Home from "./Pages/Home/Home";
-import {Toaster} from 'react-hot-toast'
-import { Route, Routes } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useAuthContext } from "./Context/AuthContext";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { authUser } = useAuthContext();
 
   return (
     <>
       <div className="m-0 p-4 h-screen flex items-center justify-center">
-        {/* <Toaster> */}
+        <Toaster />
         <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={authUser ? <Navigate to="/" /> : <Login />} />
+          <Route path="/signup" element={authUser ? <Navigate to="/" /> : <Signup />} />
+          <Route path="/" element={authUser ? <Home /> : <Navigate to="/login" />} />
         </Routes>
-        {/* </Toaster> */}
       </div>
     </>
   );
