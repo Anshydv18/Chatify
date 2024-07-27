@@ -14,7 +14,7 @@ const useLogin = () => {
     if(!check) return;
 
     try {
-      console.log("entered");
+      setLoading(true);
       const response = await fetch("/api/auth/login",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -24,12 +24,11 @@ const useLogin = () => {
         if(data.error){
             throw new Error(data.error)
         }
-        console.log(data);
       localStorage.setItem("chat-user",JSON.stringify(data))
       toast.success("Login Successful")
       setAuthUser(data);
     } catch (error) {
-      console.log(error)
+     
       toast.error("Unable to Login 😒")
     }
     finally{

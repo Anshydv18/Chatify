@@ -1,18 +1,23 @@
-import React, { useDebugValue } from 'react'
+import React, { useDebugValue, useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
+import useConversation from '../../Zustand/useConversation';
 const MessageContainer = () => {
-  const Activechat = true;
+ const {selectedConversation,setSelectedConversation} =useConversation();
+
+ useEffect(()=>{
+  return ()=>setSelectedConversation(null);
+ },[setSelectedConversation])
   return (
     <div className=' md:min-w-[450px] flex flex-col'>
         {
-          Activechat ? <NochatSelected/> :(
+          !selectedConversation ? <NochatSelected/> :(
             <>
         {/* header */}
         <div className=''>
             <span className=' label-text'>To:</span>
-            <span className='text-gray-900 font-bold'>John Doe</span>
+            <span className='text-gray-900 font-bold'>{selectedConversation.fullname}</span>
 
         </div>
         <Messages/>

@@ -47,9 +47,9 @@ const Login = () => {
             {"Don't"} have an account?
             </Link>
             <div className=' mb-12'>
-            <button className='btn btn-block btn-sm mt-2 h-10 hover:bg-blue-500 hover:text-white'
+            {loading?<div className='loading loading-spinner loading-md'/>:<button className='btn btn-block btn-sm mt-2 h-10 hover:bg-blue-500 hover:text-white'
             onClick={submit}
-            >Login</button>
+            >Login</button>}
             </div>
        </form>
       </div>
