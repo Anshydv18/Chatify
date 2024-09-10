@@ -32,7 +32,7 @@ const useLogin = () => {
       toast.success("Login Successful")
       setAuthUser(data);
     } catch (error) {
-     console.log(error.message);
+     
       toast.error(error.message)
     }
     finally{

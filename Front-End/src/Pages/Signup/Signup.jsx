@@ -20,9 +20,9 @@ const Signup = () => {
 	
 	const submit =async(e)=>{
 		e.preventDefault();
-		console.log(Inputs)
+		
 		const res =await dosignup(Inputs)
-		console.log(res)
+		
 		
 	}
 	return (
