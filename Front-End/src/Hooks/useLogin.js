@@ -17,7 +17,7 @@ const useLogin = () => {
       setLoading(true);
       
       
-      const response = await fetch("/api/auth/login",{
+      const response = await fetch(`${import.meta.env.VITE_LOCAL_HOST}/api/auth/login`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         credentials:"include",

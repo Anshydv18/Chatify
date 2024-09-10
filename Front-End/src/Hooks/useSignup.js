@@ -11,7 +11,7 @@ const useSignup = () => {
       if(!checkValue) return "checkvaluefalse";
       setLoading(true)
       try{
-        const res = await fetch("/api/auth/signup",{
+        const res = await fetch(`${import.meta.env.VITE_LOCAL_HOST}/api/auth/signup`,{
           method:"POST",
           headers:{"Content-Type":"application/json"},
           credentials:"include",
@@ -20,8 +20,7 @@ const useSignup = () => {
         if(res.error){
           throw new Error(res.error);
         }
-        //save to local storage
-        //context
+        
         const data = res.json();
         localStorage.setItem("chat-user",JSON.stringify(data))
         if(data) toast.success("Signup sucessful , Login Please! ")

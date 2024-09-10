@@ -10,7 +10,16 @@ import cors from 'cors'
 dotenv.config();
 const PORT = process.env.PORT||5000
 const app = express()
-app.use(cors())
+
+const corsOptions = {
+    origin: ["http://localhost:5173","*"], 
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions))
+//app.use(cors())
 app.use(express.json()) //to take the incoming request witn json payload
 app.use(cookieParser())
 app.use("/api/auth",authRoutes)

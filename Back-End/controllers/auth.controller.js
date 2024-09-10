@@ -51,10 +51,7 @@ export const login = async(req,res)=>{
         }
         const returnuser = await User.findById(user._id).select("-password");
         generateTokenAndSetCookie (user._id,res);
-        res.status(200).json({
-            message:"login ho gya",
-            returnuser
-        })
+        res.status(200).json(returnuser)
 
     } catch (error) {
         res.status(400,"login error catched")

@@ -51,12 +51,12 @@ const Login = () => {
             {loading?<div className='loading loading-spinner loading-md'/>:<button className='btn btn-block btn-sm mt-2 h-10 hover:bg-blue-500 hover:text-white'
             onClick={submit}
             >Login</button>}
-           <div>
+           {/* <div>
 						<button className='btn btn-block btn-sm mt-2' disabled={loading} onClick={submit}>
 							{loading ? <span className='loading loading-spinner '></span> : "Login"}
               login
 						</button>
-					</div>
+					</div> */}
             </div>
        </form>
       </div>

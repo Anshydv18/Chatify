@@ -2,7 +2,8 @@ import { User } from "../models/user.model.js";
 
 export const getUserForSidebar = async(req,res)=>{
     try {
-        const loggedInUserId = req.user._id
+        const loggedInUserId = req.userid
+        
         if(!loggedInUserId){
             return res.status(404).json({error:"not logged in user"})
         }
