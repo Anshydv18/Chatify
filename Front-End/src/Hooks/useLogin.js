@@ -15,11 +15,15 @@ const useLogin = () => {
 
     try {
       setLoading(true);
+      
+      
       const response = await fetch("/api/auth/login",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
+        credentials:"include",
         body:JSON.stringify({username,password})
       })
+     
       const data = await response.json()
         if(data.error){
             throw new Error(data.error)
@@ -28,8 +32,8 @@ const useLogin = () => {
       toast.success("Login Successful")
       setAuthUser(data);
     } catch (error) {
-     
-      toast.error("Unable to Login 😒")
+     console.log(error.message);
+      toast.error(error.message)
     }
     finally{
       setLoading(false)

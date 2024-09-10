@@ -5,6 +5,8 @@ export const signup = async(req,res)=>{
    try {
     
     const {fullname,username,password,confirmpassword,gender} = req.body;
+    console.log("enter");
+    
     if(password!==confirmpassword){
         return res.status(400).json({error:"password don't match"})
     }
@@ -43,12 +45,12 @@ export const login = async(req,res)=>{
         }
         
         const isPasswordCorrect = await bcrypt.compare(password,user.password);
-        //console.log(isPasswordCorrect);
+        
         if(!isPasswordCorrect){
             res.status(400,"Password is incorrect")
         }
         const returnuser = await User.findById(user._id).select("-password");
-        generateTokenAndSetCookie(user._id,res);
+        generateTokenAndSetCookie (user._id,res);
         res.status(200).json({
             message:"login ho gya",
             returnuser

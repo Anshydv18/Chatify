@@ -5,10 +5,12 @@ import messageRoutes from './routers/message.router.js'
 import userRoutes from './routers/user.router.js'
 import connectToMongoDB from './DB/connectDatabse.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 dotenv.config();
 const PORT = process.env.PORT||5000
 const app = express()
+app.use(cors())
 app.use(express.json()) //to take the incoming request witn json payload
 app.use(cookieParser())
 app.use("/api/auth",authRoutes)

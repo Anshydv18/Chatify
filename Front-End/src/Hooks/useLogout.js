@@ -10,7 +10,8 @@ const useLogout = () => {
         setLoading(true);
         const res = await fetch("/api/auth/logout",{
             method:"POST",
-            headers:{"content-Type":"application/json"}
+            headers:{"content-Type":"application/json"},
+            credentials:"include"
         });
 
         const data =await res.json()
