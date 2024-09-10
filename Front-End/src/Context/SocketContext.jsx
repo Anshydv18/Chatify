@@ -15,7 +15,7 @@ export const SocketContextProvider = ({children})=>{
         if(authUser){
             const socket = io("http://localhost:8000",{
                 query:{
-                    userId:authUser._id
+                    userId:authUser?._id
                 }
             });
             setSocket(socket);
@@ -23,7 +23,7 @@ export const SocketContextProvider = ({children})=>{
                 setOnlineUsers(users);
             })
 
-            return ()=>socket.close();
+            return () => socket.close();
         }
         else{
             if(socket){
@@ -31,7 +31,7 @@ export const SocketContextProvider = ({children})=>{
                 setSocket(null);
             }
         }
-    },[])
+    },[authUser])
     return(
         <SocketContext.Provider value={{socket,onlineUsers}}>
             {children}
